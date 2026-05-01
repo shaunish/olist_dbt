@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+  - name: olist_raw
+    description: "Raw Olist CSV files loaded via DuckDB"
+    tables:
+      - name: orders
+        description: "One row per order"
+      - name: order_items
+        description: "One row per item within an order"
+      - name: customers
+        description: "Customer info"
+      - name: products
+        description: "Product catalog"
+      - name: sellers
+        description: "Seller info"
+      - name: order_payments
+        description: "Payment info per order"
+      - name: order_reviews
+        description: "Customer reviews"
+      - name: review_term_frequencies
+        description: "TF-IDF term frequencies from 1-star review NLP analysis"
+      - name: reviews_processed
+        description: "Preprocessed 1-star review text"

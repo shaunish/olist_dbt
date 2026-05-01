@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Customer data. Cleaned and renamed from raw source."
+    columns:
+      - name: customer_id
+        description: "Primary key. Unique per order — a returning customer will have a
+                      different customer_id for each order they place. Use customer_unique_id
+                      to identify repeat customers across orders."
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_unique_id
+        description: "True customer identity across orders. Not unique in this table —
+                      a customer who has placed multiple orders will appear multiple times.
+                      Use this to analyze repeat purchase behavior."
+        tests:
+          - not_null
+      - name: zip_code
+        description: "First 5 digits of the zip code of the order."
+        tests:
+          - not_null
+      - name: city
+        description: "Customer city."
+        tests:
+          - not_null
+      - name: state
+        description: "Customer state."
+        tests:
+          - not_null
+

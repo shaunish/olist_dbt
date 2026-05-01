@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: stg_order_payments
+    description: "Order Payment data. Cleaned and renamed from raw source."
+    columns:
+      - name: order_id
+        description: "Primary key. Unique per order."
+        tests:
+          - not_null
+
+      - name: payment_sequence
+        description: "Number of payment types. E.g. if customer pays with two payment types, first payment_sequence=1, second payment_sequence=2."
+        tests:
+          - not_null
+      - name: payment_type
+        description: "Payment type."
+        tests:
+          - not_null
+      - name: installments
+        description: "Number of installments."
+        tests:
+          - not_null
+      - name: payment_amount
+        description: "Transaction value."
+        tests:
+          - not_null
+    tests:
+      - unique:
+          column_name: "order_id || '-' || payment_sequence"
+

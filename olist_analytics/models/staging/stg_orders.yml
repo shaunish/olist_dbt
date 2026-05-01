@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "One row per order. Cleaned and renamed from raw source."
+    columns:
+      - name: order_id
+        description: "Primary key. Unique identifier for each order."
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Foreign key to stg_customers."
+        tests:
+          - not_null
+      - name: order_status
+        description: "Current status of the order."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['delivered', 'shipped', 'canceled', 'unavailable',
+                       'invoiced', 'processing', 'created', 'approved']
+      - name: ordered_at
+        description: "Purchase timestamp."
+        tests:
+          - not_null
+      - name: approved_at
+        description: "Payment approval timestamp."
+      - name: shipped_at
+        description: "Delivered to carrier timestamp."
+      - name: delivered_at
+        description: "Actual delivery timestamp."
+      - name: estimated_delivery_at
+        description: "Estimated delivery at purchase timestamp."
+        tests:
+          - not_null

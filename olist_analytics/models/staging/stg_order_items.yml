@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: stg_order_items
+    description: "Detailed order items data. Cleaned and renamed from raw source."
+    columns:
+      - name: order_id
+        description: "Primary key. Unique per order."
+        tests:
+          - not_null
+
+      - name: item_sequence
+        description: "ID of order item. E.g. in two item order, first item_sequence=1, second item_sequence=2."
+        tests:
+          - not_null
+      - name: product_id
+        description: "Unique product identifier."
+        tests:
+          - not_null
+      - name: seller_id
+        description: "Unique Seller identifier."
+        tests:
+          - not_null
+      - name: shipping_limit_at
+        description: "Promised date of shipping."
+        tests:
+          - not_null
+      - name: item_price
+        description: "Price of item."
+        tests:
+          - not_null
+      - name: freight_price
+        description: "Freight value of item."
+        tests:
+          - not_null
+    tests:
+      - unique:
+          column_name: "order_id || '-' || item_sequence"
+

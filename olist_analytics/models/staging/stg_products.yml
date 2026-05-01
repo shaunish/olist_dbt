@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: stg_products
+    description: "Product data. Cleaned and renamed from raw source."
+    columns:
+      - name: product_id
+        description: "Primary key. Unique per order."
+        tests:
+          - unique
+          - not_null
+
+      - name: category
+        description: "Category of item (Portuguese)"
+      - name: product_name_length
+        description: "Length of product name in characters"
+      - name: product_description_length
+        description: "Length of product description in characters"
+      - name: photo_count
+        description: "Number of photos included in listing."
+      - name: weight_g
+        description: "Weight of item in grams."
+      - name: length_cm
+        description: "Length of item in centimeters."
+      - name: height_cm
+        description: "Height of item in centimeters."
+      - name: width_cm
+        description: "Width of item in centimeters."
+
+
